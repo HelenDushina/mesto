@@ -1,0 +1,7 @@
+.elements__description {
+  display: flex;
+  min-width: 246px;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 25px 15px 28px 21px;
+}

@@ -1,0 +1,11 @@
+.profile__group {
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 580px) {
+  .profile__group {
+
+  }
+}
