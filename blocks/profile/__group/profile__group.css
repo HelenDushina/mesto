@@ -6,6 +6,7 @@
 
 @media screen and (max-width: 580px) {
   .profile__group {
-
+    margin: 0 0 7px;
+    padding-left: 25px;
   }
 }

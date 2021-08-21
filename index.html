@@ -17,7 +17,7 @@
           <div class="profile__info">
             <div class="profile__group">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button type="button" class="profile__edit">
+              <button aria-label="edit" type="button" class="profile__edit">
                 <img
                   src="images/Vector.svg"
                   alt="редактировать"
@@ -27,11 +27,11 @@
             </div>
             <p class="profile__activity">Исследователь океана</p>
           </div>
-          <button type="button" class="profile__AddButton">
+          <button type="button" class="profile__add-button">
             <img
               src="images/Plus.svg"
               alt="плюс"
-              class="profile__AddButtonPic"
+              class="profile__add-button-pic"
             />
           </button>
         </section>
@@ -39,79 +39,67 @@
           <article class="elements__group">
             <img
               src="./images/kirill-pershin-1088404-unsplash.jpg"
-              alt="Изображение 1"
+              alt="Карачаевск"
               class="elements__image"
             />
             <div class="elements__rectangle">
-              <div class="elements__description">
-                <h2 class="elements__title">Карачаевск</h2>
-                <img src="images/like.svg" alt="лайк" class="elements__like" />
-              </div>
+              <h2 class="elements__title">Карачаевск</h2>
+              <button type="button" class="elements__like"></button>
             </div>
           </article>
           <article class="elements__group">
             <img
               src="./images/kirill-pershin-1404681-unsplash.jpg"
-              alt="Изображение 2"
+              alt="Гора Эльбрус"
               class="elements__image"
             />
             <div class="elements__rectangle">
-              <div class="elements__description">
-                <h2 class="elements__title">Гора Эльбрус</h2>
-                <img src="images/like.svg" alt="лайк" class="elements__like" />
-              </div>
+              <h2 class="elements__title">Гора Эльбрус</h2>
+              <button type="button" class="elements__like"></button>
             </div>
           </article>
           <article class="elements__group">
             <img
               src="./images/kirill-pershin-1556355-unsplash.jpg"
-              alt="Изображение 3"
+              alt="Домбай"
               class="elements__image"
             />
             <div class="elements__rectangle">
-              <div class="elements__description">
-                <h2 class="elements__title">Домбай</h2>
-                <img src="images/like.svg" alt="лайк" class="elements__like" />
-              </div>
+              <h2 class="elements__title">Домбай</h2>
+              <button type="button" class="elements__like"></button>
             </div>
           </article>
           <article class="elements__group">
             <img
               src="./images/drazen-neske-FSnOJ8ItoHo-unsplash.jpg"
-              alt="Изображение 4"
+              alt="Шчучыншчына"
               class="elements__image"
             />
             <div class="elements__rectangle">
-              <div class="elements__description">
-                <h2 class="elements__title">Шчучыншчына</h2>
-                <img src="images/like.svg" alt="лайк" class="elements__like" />
-              </div>
+              <h2 class="elements__title">Шчучыншчына</h2>
+              <button type="button" class="elements__like"></button>
             </div>
           </article>
           <article class="elements__group">
             <img
               src="./images/eberhard-grossgasteiger-BnA18nfjzm4-unsplash.jpg"
-              alt="Изображение 5"
+              alt="Шчучыншчына"
               class="elements__image"
             />
             <div class="elements__rectangle">
-              <div class="elements__description">
-                <h2 class="elements__title">Шчучыншчына</h2>
-                <img src="images/like.svg" alt="лайк" class="elements__like" />
-              </div>
+              <h2 class="elements__title">Шчучыншчына</h2>
+              <button type="button" class="elements__like"></button>
             </div>
           </article>
           <article class="elements__group">
             <img
               src="./images/han-laroux-Dr15XFy_8-M-unsplash.jpg"
-              alt="Изображение 6"
+              alt="Шчучыншчына"
               class="elements__image"
             />
             <div class="elements__rectangle">
-              <div class="elements__description">
-                <h2 class="elements__title">Шчучыншчына-шчучыншчына</h2>
-                <img src="images/like.svg" alt="лайк" class="elements__like" />
-              </div>
+              <h2 class="elements__title">Шчучыншчына-шчучыншчына</h2>
+              <button type="button" class="elements__like"></button>
             </div>
           </article>
         </section>
@@ -122,17 +110,29 @@
       <div class="popup">
         <div class="popup__container">
           <button type="button" class="popup__close">
-            <img src="images/CloseIcon.svg" alt="закрыть" class="popup__closeIcon" />
+            <img
+              src="images/CloseIcon.svg"
+              alt="закрыть"
+              class="popup__close-icon"
+            />
           </button>
-          <p class="popup__title">Редактировать профиль</p>
-          <form class="popup__form" name="form">
-            <input type="text" name="text" class="popup__formField popup__fieldName" />
-            <input type="text" name="activity" class="popup__formField popup__fieldActivity" />
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form" name="form-submit">
+            <input
+              type="text"
+              name="text"
+              class="popup__form-field popup__form-field_theme_name"
+            />
+            <input
+              type="text"
+              name="activity"
+              class="popup__form-field popup__form-field_theme_activity"
+            />
             <button type="submit" class="popup__button">Сохранить</button>
           </form>
         </div>
       </div>
     </div>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

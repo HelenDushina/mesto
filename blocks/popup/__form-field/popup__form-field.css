@@ -1,4 +1,4 @@
-.popup__formField {
+.popup__form-field {
   border: 0;
   width: 358px;
   box-sizing: border-box;
@@ -13,9 +13,17 @@
   margin: 0 36px 0;
 }
 
+.popup__form-field:first-of-type{
+  margin: 0 36px 30px;
+}
+
+
 @media screen and (max-width: 580px) {
-  .popup__formField {
+  .popup__form-field {
     width: 238px;
     margin: 0 22px 0;
+  }
+  .popup__form-field:first-of-type {
+    margin: 0 22px 30px;
   }
 }
