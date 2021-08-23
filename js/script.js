@@ -19,18 +19,15 @@ function closePopup() {
   popup.classList.toggle('popup_opend');
 }
 
-openPopupButton.addEventListener('click', openPopup);
-
-closePopupButton.addEventListener('click', closePopup);
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
 
-  letnameInput = popupFieldName.value;
-  letjobInput = popupFieldActivity.value;
+  let nameInput = popupFieldName.value;
+  let jobInput = popupFieldActivity.value;
 
-  profileName.textContent = letnameInput;
-  profileActivity.textContent = letjobInput;
+  profileName.textContent = nameInput;
+  profileActivity.textContent = jobInput;
 
   closePopup();
 }
