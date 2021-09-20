@@ -79,6 +79,9 @@ const addcard = (data)=>{
   cardElement.querySelector('.elements__image').alt = data.name;
   cardElement.querySelector('.elements__title').textContent = data.name;
   cardsElement.prepend(cardElement);
+  cardElement.querySelector('.elements__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('elements__like_active');
+  });
 }
 
 function addFormHandler (evt, popup) {
@@ -92,6 +95,7 @@ function addFormHandler (evt, popup) {
     name: popupFieldName.value,
     link: popupFieldWay.value
   });
+
 
   closePopup(undefined, popup);
 }
