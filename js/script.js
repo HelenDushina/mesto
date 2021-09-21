@@ -73,6 +73,10 @@ function formSubmitHandler (evt,popup) {
 const cardsElement = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#card-template').content;
 
+const removePostHandler = (event) => {
+  event.target.closest('.elements__group').remove();
+};
+
 const addcard = (data)=>{
   const cardElement = cardTemplate.querySelector('.elements__group').cloneNode(true);
   cardElement.querySelector('.elements__image').src = data.link;
@@ -82,6 +86,7 @@ const addcard = (data)=>{
   cardElement.querySelector('.elements__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('elements__like_active');
   });
+  cardElement.querySelector('.elements__button-remove').addEventListener('click', removePostHandler);
 }
 
 function addFormHandler (evt, popup) {

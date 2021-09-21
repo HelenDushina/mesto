@@ -1,0 +1,18 @@
+.elements__button-remove {
+  position: absolute;
+  width: 18px;
+  height: 19.3px;
+  right: 15px;
+  top: 15px;
+  background: url(../../../images/Delite.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border-style: none;
+  opacity: 1;
+  transition: 1s;
+}
+
+.elements__button-remove:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
