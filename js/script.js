@@ -73,12 +73,14 @@ const addCard = (data)=>{
 }
 
 function openPopup(event, popup) {
+
   if (popup.classList.contains('popup_editform')){
-  let popupFieldName = popup.querySelector('.popup__form-field_theme_name');
-  let popupFieldActivity = popup.querySelector('.popup__form-field_theme_activity');
-  popupFieldName.value = profileName.textContent;
-  popupFieldActivity.value = profileActivity.textContent;
+    let popupFieldName = popup.querySelector('.popup__form-field_theme_name');
+    let popupFieldActivity = popup.querySelector('.popup__form-field_theme_activity');
+    popupFieldName.value = profileName.textContent;
+    popupFieldActivity.value = profileActivity.textContent;
   }
+
   popup.classList.toggle('popup_opend');
 }
 

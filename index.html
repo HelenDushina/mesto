@@ -79,11 +79,13 @@
             <input
               type="text"
               name="text"
+              placeholder="Название"
               class="popup__form-field popup__form-field_theme_name"
             />
             <input
               type="text"
               name="activity"
+              placeholder="Ссылка на картинку"
               class="popup__form-field popup__form-field_theme_way"
             />
             <button type="submit" class="popup__button">Создать</button>
@@ -112,7 +114,11 @@
     <template id="card-template">
       <article class="elements__group">
         <div class="elements__image-group">
-          <img src="" alt="" class="elements__image" />
+          <img
+            src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+            alt="Архыз"
+            class="elements__image"
+          />
           <button type="button" class="elements__button-remove"></button>
         </div>
         <div class="elements__rectangle">
