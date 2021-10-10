@@ -1,7 +1,3 @@
-
-
-
-
 const popupEdit = document.querySelector('.popup_editform');
 const popupAdd = document.querySelector('.popup_addform');
 const popupView = document.querySelector('.popup_image');
@@ -55,10 +51,6 @@ const initialCards = [
   }
 ];
 
-
-
-
-
 const cardsElement = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#card-template').content;
 
@@ -89,21 +81,35 @@ function createCard (data) {
 }
 
 const addCard = (data)=>{
-
   card = createCard (data);
   cardsElement.prepend(card);
 }
 
-function openPopup(popup) {
+function getlistener(popup) {
+  return function listener(event) {
+    if(event.keyCode === 27) {
+      closePopup(popup);
+    }
+  }
+}
 
+const setAddEventListener = (popup) => {
+  document.addEventListener('keydown', getlistener(popup));
+}
+
+const removeEventListener = (popup) => {
+  document.removeEventListener('keydown', getlistener(popup));
+}
+
+function openPopup(popup) {
   popup.classList.add('popup_opend');
+  setAddEventListener(popup);
 }
 
 function closePopup(popup) {
-
   popup.classList.remove('popup_opend');
+  removeEventListener(popup);
 }
-
 
 function submitEditProfileForm (evt) {
   evt.preventDefault();
@@ -114,14 +120,9 @@ function submitEditProfileForm (evt) {
   closePopup(popupEdit);
 }
 
-
-
-
 function submitAddCardForm (evt) {
 
   evt.preventDefault();
-
-
 
   addCard({
     name: popupFieldNameAdd.value,
@@ -142,25 +143,13 @@ function hanleopenEditProfilePopup() {
   openPopup(popupEdit);
 }
 
-const openEditProfilePopup = () => hanleopenEditProfilePopup();//openPopup(popupEdit);
+const openEditProfilePopup = () => hanleopenEditProfilePopup();
 
 openPopupButton.addEventListener('click', openEditProfilePopup);
 
 const openAddCardPopup = () => openPopup(popupAdd);
 
 openAddPopupButton.addEventListener('click', openAddCardPopup);
-
-const closeEditProfilePopup = () => closePopup(popupEdit);
-
-closePopupButton.addEventListener('click', closeEditProfilePopup);
-
-const closeAddCardPopup = () => closePopup(popupAdd);
-
-closePopupAddButton.addEventListener('click', closeAddCardPopup);
-
-const closeImagePopup = () => closePopup(popupView);
-
-closePopupViewButton.addEventListener('click', closeImagePopup);
 
 const editProfileFormSubmitHandler = (e) => submitEditProfileForm(e);
 
@@ -174,3 +163,34 @@ initialCards.forEach((card)=>{
   addCard(card);
 }
 )
+
+const enablePopupCloseButton = () => {
+
+  const buttonClose = document.querySelectorAll('.popup__close');
+    Array.from(buttonClose).forEach(buttonElement =>{
+      buttonElement.addEventListener('click',function() {
+      closePopup(buttonElement.parentElement.parentElement);
+    });
+    })
+  }
+
+enablePopupCloseButton();
+
+const enablePopupClose = () => {
+
+  const popup = document.querySelectorAll('.popup');
+    Array.from(popup).forEach(popupElement =>{
+
+     popupElement.addEventListener('click',function() {
+      closePopup(popupElement);
+    });
+
+    popupElement.querySelector('.popup__content').addEventListener('click', function(evt) {
+       evt.stopPropagation();
+     });
+
+    })
+
+}
+
+enablePopupClose();

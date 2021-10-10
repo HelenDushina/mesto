@@ -41,7 +41,7 @@
         <p class="footer__copyright">&copy;2020 Mesto Russia</p>
       </footer>
       <div class="popup popup_editform">
-        <div class="popup__container">
+        <div class="popup__container popup__content">
           <button type="button" class="popup__close">
             <img
               src="images/CloseIcon.svg"
@@ -50,25 +50,35 @@
             />
           </button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form" name="form-submit">
+          <form class="popup__form" name="form-submit" novalidate>
             <input
               type="text"
               name="text"
               placeholder="Имя"
               class="popup__form-field popup__form-field_theme_name"
+              required
+              minlength="2"
+              maxlength="40"
+              id = "name"
             />
+            <span id="name-error" class ="error"></span>
             <input
               type="text"
               name="activity"
               placeholder="Вид деятельности"
               class="popup__form-field popup__form-field_theme_activity"
+              required
+              minlength="2"
+              maxlength="200"
+              id = "activity"
             />
+            <span id="activity-error" class ="error"></span>
             <button type="submit" class="popup__button">Сохранить</button>
           </form>
         </div>
       </div>
       <div class="popup popup_addform">
-        <div class="popup__container">
+        <div class="popup__container popup__content">
           <button type="button" class="popup__close popup__closeaddform">
             <img
               src="images/CloseIcon.svg"
@@ -77,25 +87,33 @@
             />
           </button>
           <h2 class="popup__title">Новое место</h2>
-          <form class="popup__form popup__form_add" name="form-submit">
+          <form class="popup__form popup__form_add" name="form-submit" novalidate>
             <input
               type="text"
               name="text"
               placeholder="Название"
               class="popup__form-field popup__form-field_theme_name"
+              id = "place-name"
+              minlength="2"
+              maxlength="40"
+              required
             />
+            <span id="place-name-error" class ="error"></span>
             <input
-              type="text"
+              type="url"
               name="activity"
               placeholder="Ссылка на картинку"
               class="popup__form-field popup__form-field_theme_way"
+              id ="way"
+              required
             />
+            <span id="way-error" class ="error"></span>
             <button type="submit" class="popup__button">Создать</button>
           </form>
         </div>
       </div>
       <div class="popup popup_image">
-        <div class="popup__imagecontainer">
+        <div class="popup__imagecontainer popup__content">
           <button type="button" class="popup__close popup__closeimageform">
             <img
               src="images/CloseIcon.svg"
@@ -131,6 +149,6 @@
     </template>
 
     <script src="js/script.js"></script>
-
+    <script src="js/validation.js"></script>
   </body>
 </html>
