@@ -85,13 +85,6 @@ const addCard = (data)=>{
   cardsElement.prepend(card);
 }
 
-//function getlistener(popup) {
-// return function listener(event) {
-//    if(event.keyCode === 27) {
-//      closePopup(popup);
-//    }
-//  }
-//}
 
 function closePopupByEsc(evt) {
   if(evt.key === 'Escape') {
@@ -100,23 +93,14 @@ function closePopupByEsc(evt) {
   }
 }
 
-//const setAddEventListener = (popup) => {
-//  document.addEventListener('keydown', getlistener(popup));
-//}
-
-//const removeEventListener = (popup) => {
-//  document.removeEventListener('keydown', getlistener(popup));
-//}
 
 function openPopup(popup) {
   popup.classList.add('popup_opend');
-  //setAddEventListener(popup);
   document.addEventListener('keydown', closePopupByEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opend');
-  //removeEventListener(popup);
   document.removeEventListener('keydown', closePopupByEsc);
 }
 
