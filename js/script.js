@@ -193,11 +193,11 @@ const enablePopupClose = () => {
   const popupList = document.querySelectorAll('.popup');
     Array.from(popupList).forEach(popupElement =>{
 
-     popupElement.addEventListener('click',function() {
+     popupElement.addEventListener('mousedown',function() {
       closePopup(popupElement);
     });
 
-    popupElement.querySelector('.popup__content').addEventListener('click', function(evt) {
+    popupElement.querySelector('.popup__content').addEventListener('mousedown', function(evt) {
        evt.stopPropagation();
      });
 
