@@ -9,7 +9,7 @@ const closePopupButton = document.querySelector('.popup__close');
 const closePopupAddButton = document.querySelector('.popup__closeaddform');
 const closePopupViewButton = document.querySelector('.popup__closeimageform');
 
-const formElement = document.querySelector('.popup__form');
+const editFormElement = document.querySelector('.popup__form_edit');
 const addFormElement = document.querySelector('.popup__form_add');
 
 const profileName = document.querySelector('.profile__name');
@@ -81,34 +81,43 @@ function createCard (data) {
 }
 
 const addCard = (data)=>{
-  card = createCard (data);
+  const card = createCard (data);
   cardsElement.prepend(card);
 }
 
-function getlistener(popup) {
-  return function listener(event) {
-    if(event.keyCode === 27) {
-      closePopup(popup);
-    }
+//function getlistener(popup) {
+// return function listener(event) {
+//    if(event.keyCode === 27) {
+//      closePopup(popup);
+//    }
+//  }
+//}
+
+function closePopupByEsc(evt) {
+  if(evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opend');
+    closePopup(openedPopup);
   }
 }
 
-const setAddEventListener = (popup) => {
-  document.addEventListener('keydown', getlistener(popup));
-}
+//const setAddEventListener = (popup) => {
+//  document.addEventListener('keydown', getlistener(popup));
+//}
 
-const removeEventListener = (popup) => {
-  document.removeEventListener('keydown', getlistener(popup));
-}
+//const removeEventListener = (popup) => {
+//  document.removeEventListener('keydown', getlistener(popup));
+//}
 
 function openPopup(popup) {
   popup.classList.add('popup_opend');
-  setAddEventListener(popup);
+  //setAddEventListener(popup);
+  document.addEventListener('keydown', closePopupByEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opend');
-  removeEventListener(popup);
+  //removeEventListener(popup);
+  document.removeEventListener('keydown', closePopupByEsc);
 }
 
 function submitEditProfileForm (evt) {
@@ -143,17 +152,20 @@ function hanleopenEditProfilePopup() {
   openPopup(popupEdit);
 }
 
-const openEditProfilePopup = () => hanleopenEditProfilePopup();
+openPopupButton.addEventListener('click', hanleopenEditProfilePopup);
 
-openPopupButton.addEventListener('click', openEditProfilePopup);
+function handleOpenAddCardPopup() {
+  const button = popupAdd.querySelector(".popup__button");
+  button.classList.add("popup__button_invalid");
+  button.disabled = 'disabled';
+  openPopup(popupAdd);
+}
 
-const openAddCardPopup = () => openPopup(popupAdd);
-
-openAddPopupButton.addEventListener('click', openAddCardPopup);
+openAddPopupButton.addEventListener('click', handleOpenAddCardPopup);
 
 const editProfileFormSubmitHandler = (e) => submitEditProfileForm(e);
 
-formElement.addEventListener('submit', editProfileFormSubmitHandler);
+editFormElement.addEventListener('submit', editProfileFormSubmitHandler);
 
 const addCardFormSubmitHandler = (e) => submitAddCardForm(e);
 
@@ -166,8 +178,8 @@ initialCards.forEach((card)=>{
 
 const enablePopupCloseButton = () => {
 
-  const buttonClose = document.querySelectorAll('.popup__close');
-    Array.from(buttonClose).forEach(buttonElement =>{
+  const buttonCloseList = document.querySelectorAll('.popup__close');
+    Array.from(buttonCloseList).forEach(buttonElement =>{
       buttonElement.addEventListener('click',function() {
       closePopup(buttonElement.parentElement.parentElement);
     });
@@ -178,8 +190,8 @@ enablePopupCloseButton();
 
 const enablePopupClose = () => {
 
-  const popup = document.querySelectorAll('.popup');
-    Array.from(popup).forEach(popupElement =>{
+  const popupList = document.querySelectorAll('.popup');
+    Array.from(popupList).forEach(popupElement =>{
 
      popupElement.addEventListener('click',function() {
       closePopup(popupElement);
