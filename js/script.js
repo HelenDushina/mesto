@@ -138,11 +138,14 @@ function hanleopenEditProfilePopup() {
 
 openPopupButton.addEventListener('click', hanleopenEditProfilePopup);
 
+const button = popupAdd.querySelector(".popup__button");
+
 function handleOpenAddCardPopup() {
-  const button = popupAdd.querySelector(".popup__button");
+
   button.classList.add("popup__button_invalid");
   button.disabled = 'disabled';
   openPopup(popupAdd);
+
 }
 
 openAddPopupButton.addEventListener('click', handleOpenAddCardPopup);
@@ -165,7 +168,7 @@ const enablePopupCloseButton = () => {
   const buttonCloseList = document.querySelectorAll('.popup__close');
     Array.from(buttonCloseList).forEach(buttonElement =>{
       buttonElement.addEventListener('click',function() {
-      closePopup(buttonElement.parentElement.parentElement);
+      closePopup(buttonElement.closest(".popup"));
     });
     })
   }
