@@ -1,25 +1,20 @@
-export default class Utils {
-  constructor(popup) {
-    this._popup = popup;
+
+  export function openPopup(popup) {
+    popup.classList.add('popup_opend');
+    document.addEventListener('keydown', closePopupByEsc);
   }
 
-  openPopup() {
-    this._popup.classList.add('popup_opend');
-    document.addEventListener('keydown', this.closePopupByEsc);
+  export function closePopup(popup) {
+    popup.classList.remove('popup_opend');
+    document.removeEventListener('keydown', closePopupByEsc);
   }
 
-  closePopup() {
-    this._popup.classList.remove('popup_opend');
-    document.removeEventListener('keydown', this.closePopupByEsc);
-  }
-
-  closePopupByEsc(evt) {
+  export function closePopupByEsc(evt) {
     if (evt.key !== 'Escape') {
       return;
     }
     const openedPopup = document.querySelector('.popup_opend');
-    openedPopup.classList.remove('popup_opend');
-    document.removeEventListener('keydown', this.closePopupByEsc);
+    closePopup(openedPopup);
   }
 
-}
+

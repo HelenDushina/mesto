@@ -1,3 +1,5 @@
+import { openPopup } from '../js/utils.js';
+
 export default class Card {
   constructor(data, selector) {
     this._name = data.name;
@@ -32,19 +34,19 @@ export default class Card {
       evt.target.closest('.elements__group').remove();
     });
 
-    this._element.querySelector('.elements__image').addEventListener('click', () => handlePreviewPicture(data));
+    this._element.querySelector('.elements__image').addEventListener('click', () => this._handlePreviewPicture());
   }
 
-  _handlePreviewPicture(data) {
+  _handlePreviewPicture() {
 
     const popupView = document.querySelector('.popup_image');
     const popupImage = popupView.querySelector('.popup__image');
     const popupText = popupView.querySelector('.popup__text');
 
-    popupImage.src = data.link;
-    popupImage.alt = data.name;
-    popupText.textContent = data.name;
-    //openPopup(popupView);
+    popupImage.src = this._link;
+    popupImage.alt =  this._name;
+    popupText.textContent =  this._name;
+    openPopup(popupView);
   }
 
 }

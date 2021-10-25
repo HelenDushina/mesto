@@ -1,5 +1,6 @@
 import Card from '../js/card.js';
-import Utils from '../js/utils.js';
+import { openPopup, closePopup, closePopupByEsc} from '../js/utils.js'
+
 
 const popupEdit = document.querySelector('.popup_editform');
 const popupAdd = document.querySelector('.popup_addform');
@@ -61,8 +62,7 @@ function submitEditProfileForm (evt) {
   profileName.textContent =  popupFieldName.value;
   profileActivity.textContent = popupFieldActivity.value;
 
-  const utils = new Utils(popupEdit);
-  utils.closePopup();
+  closePopup(popupEdit);
 }
 
 function submitAddCardForm (evt) {
@@ -79,8 +79,7 @@ function submitAddCardForm (evt) {
   popupFieldNameAdd.value ='';
   popupFieldWay.value = '';
 
-  const utils = new Utils(popupAdd);
-  utils.closePopup();
+ closePopup(popupAdd);
 }
 
 function hanleopenEditProfilePopup() {
@@ -88,8 +87,7 @@ function hanleopenEditProfilePopup() {
   popupFieldName.value = profileName.textContent;
   popupFieldActivity.value = profileActivity.textContent;
 
-  const utils = new Utils(popupEdit);
-  utils.openPopup();
+  openPopup(popupEdit);
 }
 
 openPopupButton.addEventListener('click', hanleopenEditProfilePopup);
@@ -101,8 +99,7 @@ function handleOpenAddCardPopup() {
   button.classList.add("popup__button_invalid");
   button.disabled = 'disabled';
 
-  const utils = new Utils(popupAdd);
-  utils.openPopup();
+  openPopup(popupAdd);
 
 }
 
@@ -129,8 +126,7 @@ const enablePopupCloseButton = () => {
   Array.from(buttonCloseList).forEach(buttonElement =>{
     buttonElement.addEventListener('click',function() {
 
-      const utils = new Utils(buttonElement.closest(".popup"));
-      utils.closePopup();
+      closePopup(buttonElement.closest(".popup"));
     });
   })
 }
@@ -144,8 +140,7 @@ const enablePopupClose = () => {
 
     popupElement.addEventListener('mousedown',function() {
 
-      const utils = new Utils(popupElement);
-      utils.closePopup();
+      closePopup(popupElement);
     });
 
     popupElement.querySelector('.popup__content').addEventListener('mousedown', function(evt) {
