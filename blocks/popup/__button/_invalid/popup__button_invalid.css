@@ -1,5 +1,6 @@
 .popup__button_invalid {
   background: rgba(250, 250, 250);
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0);
+  color: rgba(0, 0, 0);
+  opacity: 0.2;
 }
