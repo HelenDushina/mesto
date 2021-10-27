@@ -1,5 +1,6 @@
-import Card from '../js/card.js';
-import { openPopup, closePopup, closePopupByEsc} from '../js/utils.js'
+import Card from '../js/Card.js';
+import { openPopup, closePopup, closePopupByEsc} from '../js/utils.js';
+import FormValidator from '../js/FormValidator.js';
 
 
 const popupEdit = document.querySelector('.popup_editform');
@@ -52,8 +53,8 @@ const cardsElement = document.querySelector('.elements');
 
 
 const addCard = (data)=>{
-  const card = data.generate();
-  cardsElement.prepend(card);
+ // const card = data.generate();
+  cardsElement.prepend(data);
 }
 
 function submitEditProfileForm (evt) {
@@ -65,16 +66,27 @@ function submitEditProfileForm (evt) {
   closePopup(popupEdit);
 }
 
+function createCard(data) {
+  const card = new Card(data, '#card-template').generate();
+  //card.generate();
+  return card;
+}
+
 function submitAddCardForm (evt) {
 
   evt.preventDefault();
 
-  const card = new Card({
-      name: popupFieldNameAdd.value,
-      link: popupFieldWay.value
-     }, '#card-template');
-  addCard(card);
+  // const card = new Card({
+  //     name: popupFieldNameAdd.value,
+  //     link: popupFieldWay.value
+  //    }, '#card-template');
 
+  const card = createCard({
+        name: popupFieldNameAdd.value,
+        link: popupFieldWay.value
+       });
+
+  addCard(card);
 
   popupFieldNameAdd.value ='';
   popupFieldWay.value = '';
@@ -96,8 +108,15 @@ const button = popupAdd.querySelector(".popup__button");
 
 function handleOpenAddCardPopup() {
 
-  button.classList.add("popup__button_invalid");
-  button.disabled = 'disabled';
+  const formElement = popupAdd.querySelector(".popup__form");
+  const validation = new FormValidator({formSelector: '.popup__form',
+    inputSelector: '.popup__form-field',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_invalid',
+    inputErrorClass: 'popup__form-field_state_invalid',
+    errorClass: 'error'}, formElement);
+  validation.resetValidation();
+
 
   openPopup(popupAdd);
 
@@ -115,7 +134,7 @@ addFormElement.addEventListener('submit', addCardFormSubmitHandler);
 
 
 initialCards.forEach((item)=>{
-  const card = new Card(item, '#card-template');
+  const card = new createCard(item);
   addCard(card);
   });
 
@@ -139,7 +158,6 @@ const enablePopupClose = () => {
   Array.from(popupList).forEach(popupElement =>{
 
     popupElement.addEventListener('mousedown',function() {
-
       closePopup(popupElement);
     });
 
@@ -152,3 +170,20 @@ const enablePopupClose = () => {
 }
 
 enablePopupClose();
+
+const enableValidation = (config) => {
+  const forms = document.querySelectorAll(config.formSelector);
+  Array.from(forms).forEach(formElement => {
+    const validation = new FormValidator(config, formElement);
+    validation.enableValidation();
+  })
+}
+
+enableValidation(
+  {formSelector: '.popup__form',
+    inputSelector: '.popup__form-field',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_invalid',
+    inputErrorClass: 'popup__form-field_state_invalid',
+    errorClass: 'error'}
+);
