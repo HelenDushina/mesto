@@ -1,14 +1,15 @@
-import { openPopup } from '../js/utils.js';
+
+
 const popupView = document.querySelector('.popup_image');
 const popupImage = popupView.querySelector('.popup__image');
 const popupText = popupView.querySelector('.popup__text');
 
 export default class Card {
-  constructor(data, selector) {
+  constructor(data, selector,handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._selector = selector;
-
+    this._handleCardClick = handleCardClick;
   }
   _getElement() {
     const cardElement = document.querySelector(this._selector)
@@ -42,15 +43,15 @@ export default class Card {
       evt.target.closest('.elements__group').remove();
     });
 
-    this._cardImage.addEventListener('click', () => this._handlePreviewPicture());
+    this._cardImage.addEventListener('click', this._handleCardClick);
   }
 
-  _handlePreviewPicture() {
-
-    popupImage.src = this._link;
-    popupImage.alt =  this._name;
-    popupText.textContent =  this._name;
-    openPopup(popupView);
-  }
+  // _handlePreviewPicture() {
+  //
+  //   popupImage.src = this._link;
+  //   popupImage.alt =  this._name;
+  //   popupText.textContent =  this._name;
+  //   openPopup(popupView);
+  // }
 
 }
