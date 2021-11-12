@@ -8,20 +8,24 @@ export default class UserInfo  {
     this._name = "";
   }
 
-  updateUserInfo = () => {
-    this._nameElem.textContent = this._name;
-    this._jobElem.textContent = this._job;
-  }
+  // updateUserInfo = () => {
+  //   this._nameElem.textContent = this._name;
+  //   this._jobElem.textContent = this._job;
+  // }
 
   setUserInfo = (newName,newJob) => {
     this._name = newName;
     this._job = newJob;
+    this._nameElem.textContent = this._name;
+    this._jobElem.textContent = this._job;
   }
 
   getUserInfo = () => {
+
     return {
       name: this._name,
       job: this._job
+
     }
   }
 }
