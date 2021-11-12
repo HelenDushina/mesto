@@ -1,28 +1,26 @@
 
-
-const popupView = document.querySelector('.popup_image');
-const popupImage = popupView.querySelector('.popup__image');
-const popupText = popupView.querySelector('.popup__text');
-
 export default class Card {
   constructor(data, selector,handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._selector = selector;
     this._handleCardClick = handleCardClick;
+    this._listenerLike = this._handleListenerLike.bind(this);
+    this._listenerRemove = this._handlelistenerRemove.bind(this);
   }
+
   _getElement() {
     const cardElement = document.querySelector(this._selector)
       .content
       .querySelector('.elements__group')
       .cloneNode(true);
-
     return cardElement;
   }
 
 
 
   generate() {
+
     this._element = this._getElement();
     this._cardImage = this._element.querySelector('.elements__image');
     this._cardImage.src = this._link;
@@ -34,24 +32,24 @@ export default class Card {
 
     return this._element;
   }
-  _setEventListeners() {
-    this._element.querySelector('.elements__like').addEventListener('click', function (evt) {
+
+  _handleListenerLike(evt) {
       evt.target.classList.toggle('elements__like_active');
-    });
-
-    this._element.querySelector('.elements__button-remove').addEventListener('click', function (evt) {
-      evt.target.closest('.elements__group').remove();
-    });
-
-    this._cardImage.addEventListener('click', this._handleCardClick);
   }
 
-  // _handlePreviewPicture() {
-  //
-  //   popupImage.src = this._link;
-  //   popupImage.alt =  this._name;
-  //   popupText.textContent =  this._name;
-  //   openPopup(popupView);
-  // }
+  _handlelistenerRemove(evt) {
+    evt.target.closest('.elements__group').remove();
+  }
+
+  _setEventListeners() {
+    this._element.querySelector('.elements__like').addEventListener('click',  this._listenerLike);
+
+    this._element.querySelector('.elements__button-remove').addEventListener('click', this._listenerRemove);
+
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick({link: this._link , name: this._name});
+    });
+  }
+
 
 }
