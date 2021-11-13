@@ -2,11 +2,11 @@ import Card from './components/Card.js';
 
 import FormValidator from './components/FormValidator.js';
 import Section from './components/Section.js';
-import Popup from './components/Popup.js';
+
 import PopupWithImage from './components/PopupWithImage.js';
 import PopupWithForm from './components/PopupWhithForm.js';
 import UserInfo from './components/UserInfo.js';
-import '../pages/index.css';
+// import '../pages/index.css';
 
 import {
   initialCards,
@@ -36,7 +36,7 @@ const handleCardClick = ({link, name}) => {
   popupWithImage.setEventListeners();
 };
 
-function CreateCard(cardItem) {
+function сreateCard(cardItem) {
   const card = new Card(cardItem, '#card-template', handleCardClick);
   const cardElement = card.generate();
   return cardElement;
@@ -45,7 +45,7 @@ function CreateCard(cardItem) {
 const cardList = new Section({
     data: initialCards,
     renderer: (cardItem) => {
-      const cardElement = CreateCard(cardItem);
+      const cardElement = сreateCard(cardItem);
       cardList.addItem(cardElement);
     },
   },
@@ -65,36 +65,28 @@ const editPopup = new PopupWithForm(
 const addPopup = new PopupWithForm(
   '.popup_addform',
   (formData) => {
-    const cardList = new Section({
-        data: [formData],
-        renderer: (cardItem) => {
-          const cardElement = CreateCard(cardItem);
-          cardList.addItem(cardElement);
-        },
-      },
-      formSection
-    );
-    cardList.renderItems();
+    const cardElement = сreateCard(formData);
+    cardList.addItem(cardElement);
   }
 );
 
 addPopup.setEventListeners();
 
 
-function hanleopenEditProfilePopup() {
+function hanleOpenEditProfilePopup() {
 
   editFormValidation.resetValidation();
 
-  const getUserInfo = userInfo.getUserInfo();
+  const userData = userInfo.getUserInfo();
 
-  popupFieldName.value = getUserInfo.name;
-  popupFieldActivity.value = getUserInfo.job;
+  popupFieldName.value = userData.name;
+  popupFieldActivity.value = userData.job;
 
   editPopup.openPopup();
   editPopup.setEventListeners();
 }
 
-openPopupButton.addEventListener('click', hanleopenEditProfilePopup);
+openPopupButton.addEventListener('click', hanleOpenEditProfilePopup);
 
 
 function handleOpenAddCardPopup() {
