@@ -60,7 +60,7 @@ const editPopup = new PopupWithForm(
       userInfo.setUserInfo(popupFieldName.value,popupFieldActivity.value);
   }
 );
-
+editPopup.setEventListeners();
 
 const addPopup = new PopupWithForm(
   '.popup_addform',
@@ -83,7 +83,7 @@ function hanleOpenEditProfilePopup() {
   popupFieldActivity.value = userData.job;
 
   editPopup.openPopup();
-  editPopup.setEventListeners();
+  // editPopup.setEventListeners();
 }
 
 openPopupButton.addEventListener('click', hanleOpenEditProfilePopup);
