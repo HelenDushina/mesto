@@ -1,12 +1,15 @@
 
 export default class Card {
-  constructor(data, selector,handleCardClick) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor(options, selector) {
+    this._name = options.data.name;
+    this._link = options.data.link;
+    this._likes = options.data.likes.length;
     this._selector = selector;
-    this._handleCardClick = handleCardClick;
-    this._listenerLike = this._handleListenerLike.bind(this);
-    this._listenerRemove = this._handlelistenerRemove.bind(this);
+    this._handleCardClick = options.handleCardClick;
+   // this._listenerLike = this._handleListenerLike.bind(this);
+    //this._listenerRemove = this._handlelistenerRemove.bind(this);
+    this._listenerRemove = options.handleDeleteIconClick;
+    this._listenerLike = options.handleLikeClick;
   }
 
   _getElement() {
@@ -27,19 +30,21 @@ export default class Card {
     this._cardImage.alt = this._name;
 
     this._element.querySelector('.elements__title').textContent = this._name;
+    this._element.querySelector('.elements__like-count').textContent = this._likes;
+
 
     this._setEventListeners();
 
     return this._element;
   }
 
-  _handleListenerLike(evt) {
-      evt.target.classList.toggle('elements__like_active');
-  }
-
-  _handlelistenerRemove(evt) {
-    evt.target.closest('.elements__group').remove();
-  }
+  // _handleListenerLike(evt) {
+  //     evt.target.classList.toggle('elements__like_active');
+  // }
+  //
+  // _handlelistenerRemove(evt) {
+  //   evt.target.closest('.elements__group').remove();
+  // }
 
   _setEventListeners() {
     this._element.querySelector('.elements__like').addEventListener('click',  this._listenerLike);
