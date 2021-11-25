@@ -13,12 +13,21 @@ export default class Api {
     this._headers = options.headers;
   }
 
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    // если ошибка, отклоняем промис
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
+
   getUser() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: this._headers
     })
-      .then(onError);
+      .then(this._checkResponse);
 
   }
 
@@ -28,7 +37,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-      .then(onError);
+      .then(this._checkResponse);
 
   }
 
@@ -37,7 +46,7 @@ export default class Api {
       method: "GET",
       headers: this._headers
     })
-      .then(onError);
+      .then(this._checkResponse);
 
   }
 
@@ -48,7 +57,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-      .then(onError);
+      .then(this._checkResponse);
 
   }
 
@@ -58,7 +67,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-      .then(onError);
+      .then(this._checkResponse);
 
   }
 
@@ -67,7 +76,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     })
-      .then(onError);
+      .then(this._checkResponse);
   }
 
   likeCard(dataId) {
@@ -75,7 +84,7 @@ export default class Api {
       method: "PUT",
       headers: this._headers,
     })
-      .then(onError);
+      .then(this._checkResponse);
   }
 
   removeLikeCard(dataId) {
@@ -83,7 +92,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     })
-      .then(onError);
+      .then(this._checkResponse);
   }
 
 }

@@ -31,6 +31,7 @@ export const AvatarProfile = document.querySelector('.profile__avatar');
 
 export const editFormElement = document.querySelector('.popup__form_edit');
 export const addFormElement = document.querySelector('.popup__form_add');
+export const avatarFormElement = document.querySelector('.popup__form_avatar');
 
 
 

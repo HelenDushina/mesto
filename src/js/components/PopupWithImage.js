@@ -16,4 +16,11 @@ export default class PopupWithImage extends Popup {
 
     super.openPopup();
   }
+
+
+  closePopup() {
+    this._popup.classList.remove('popup_opend');
+    this._removeListeners();
+
+  }
 }
