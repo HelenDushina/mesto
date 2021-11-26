@@ -104,7 +104,7 @@ avatarPopup.setEventListeners();
 const addPopup = new PopupWithForm(
   '.popup_addform',
   (formData) => {
-
+    renderLoading(true,'.popup_addform');
     const responseSaveCard = api.addCard(formData)
       .then(res=> {
         console.log(res);
@@ -114,6 +114,9 @@ const addPopup = new PopupWithForm(
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
+      })
+      .finally(() => {
+        renderLoading(false,'.popup_addform');
       });
   }
 );
