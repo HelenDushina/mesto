@@ -12,7 +12,7 @@ export default class Popup {
   closePopup() {
     this._popup.classList.remove('popup_opend');
     this._removeListeners();
-    this._popup.querySelector('.popup__form').reset();
+
   }
 
   _handleEscClose(evt) {
